@@ -1,0 +1,44 @@
+<!-- this takes from the includes the header ejs file -->
+<% include partials/header %>
+  <h1>Add Customer</h1>
+  <ul>
+    <% if(errors){ %>
+      <% errors.forEach(function(error){ %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    <% }%>
+  </ul>
+
+  <!-- this will store the data that was gather from the users input -->
+  <!-- action has to match with the app.post in the app.js -->
+  <form method="POST" action="/users/add">
+    <!-- br are line break -->
+    <label>First Name</label><br>
+    <!-- this will create a box and ask for an input -->
+    <input type="text" name="first_name">
+    <br>
+    <label>Last Name</label><br>
+    <input type="text" name="last_name">
+    <br>
+    <label>Email</label><br>
+    <input type="text" name="email">
+    <br><br>
+    <!-- this will take all the input and submit and store the data -->
+    <input type="submit" value="Submit">
+  </form>
+  <!--  this syntax grabs from the varable from the js file and outputs it-->
+  <!--  when open a single value use an '=' symbol-->
+  <h1><%= title %></h1>
+  <ul>
+    <!-- for loop -->
+    <% users.forEach(function(user){ %>
+      <!-- calls from the users array table with exact names -->
+      <li><%= user.first_name %>
+          <%= user.last_name %>
+          <!-- this puts a delete button besides the name -->
+          - <a href="#" class="deleteUser" data-id="<%= user._id %>">Delete</a></li>
+    <% }) %>
+  </ul>
+
+<!-- this takes from the includes the footer ejs file -->
+<% include partials/footer %>
